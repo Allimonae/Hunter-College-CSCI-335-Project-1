@@ -107,6 +107,7 @@ int main(){
     getline(fin,line);  // skip line between entries
     catalog.push_back(temp);
 
+    temp.print(); //MOD
   }
 
   // write your test cases here

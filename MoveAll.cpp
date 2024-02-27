@@ -11,7 +11,9 @@ void moveAll (const std::string keyword, std::vector<Book> &source, std::vector<
   int books_moved=0; // counts books moved
   // DO NOT ALTER ABOVE HERE
 
-  // erase this comment and write your code here
+  for (auto it = source.begin(); it != source.end(); it++){
+    
+  }
 
 
   // DO NOT ALTER BELOW HERE
