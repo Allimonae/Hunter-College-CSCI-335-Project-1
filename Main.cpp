@@ -29,6 +29,8 @@ int main(){
   std::smatch match;
   Book temp;
 
+  int count = 0;
+  
   // reads all 7 fields in each iteration and copies the value of each field into Book "temp"
   // pushes "temp" onto the back of "catalog" at the end of the iteration
   while (getline(fin,line)){
@@ -107,11 +109,19 @@ int main(){
     getline(fin,line);  // skip line between entries
     catalog.push_back(temp);
 
-    temp.print(); //MOD
+    count++;
+    std::cout << count << " ";
+    temp.print();
   }
 
   // write your test cases here
 
+  // std::vector<Book> dest;
+  // moveAll("Literary Fiction", catalog, dest);
+  // for (auto it = dest.begin(); it != dest.end(); ++it){
+  //   Book book = std::move(*it);
+  //   book.print();
+  // }
 
   return 0;
 }

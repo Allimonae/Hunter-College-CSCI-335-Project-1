@@ -222,7 +222,7 @@
 
         //print every string in vector keywords, separate by comma
                   << "\nKeywords: ";
-                for (std::vector<std::string>::const_iterator it = keywords_.begin(); it != keywords_.end() - 1; ++it){
+                for (auto it = keywords_.begin(); it != keywords_.end() - 1; ++it){
                     std::cout << *it << ", ";
                 }
                     std::cout << keywords_.back();
