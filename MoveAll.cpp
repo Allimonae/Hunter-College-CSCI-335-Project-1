@@ -24,11 +24,12 @@ void moveAll (const std::string keyword, std::vector<Book> &source, std::vector<
         books_moved++;
         Book dest_book = std::move(*i);
         dest.push_back(dest_book);
+        source.erase(i);
+        i--;
         break;
       }
     }
   }
-
 
   // DO NOT ALTER BELOW HERE
   const auto t1_end = std::chrono::steady_clock::now();

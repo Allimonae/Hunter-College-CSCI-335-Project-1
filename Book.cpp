@@ -53,7 +53,7 @@ Book.cpp declares the Book class and implements its private and public members
      * Move Constructor
     */
     Book::Book(Book&& rhs): title_(rhs.title_), author_(rhs.author_), ISBN_(rhs.ISBN_), 
-        icon_(rhs.icon_), price_(rhs.price_), keywords_(std::move(rhs.keywords_))
+        icon_(rhs.icon_), price_(rhs.price_), keywords_(std::move(rhs.keywords_)), blurb_(rhs.blurb_)
     {
         rhs.title_ = "";
         rhs.author_ = "";

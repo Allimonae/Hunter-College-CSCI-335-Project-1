@@ -119,9 +119,9 @@ int main(){
 
   std::vector<Book> dest;
   moveAll("Manga", catalog, dest);
-  for (auto it = catalog.begin(); it != catalog.end(); ++it){
-    it->print();
-  }
+  // for (auto it = dest.begin(); it != dest.end(); ++it){
+  //   it->print();
+  // }
 
   return 0;
 }
