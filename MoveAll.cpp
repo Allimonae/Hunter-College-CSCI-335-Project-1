@@ -1,3 +1,10 @@
+/**
+CSCI 335 Spring 2024
+Project 1
+Modified by Allison Lee on February 28, 2024
+MoveAll.cpp implements the MoveAll function
+*/
+
 #include "MoveAll.hpp"
 #include "Book.hpp"
 
@@ -12,15 +19,13 @@ void moveAll (const std::string keyword, std::vector<Book> &source, std::vector<
   // DO NOT ALTER ABOVE HERE
 
   for (auto i = source.begin(); i != source.end(); ++i){
-    i->print();
-    for (auto j = i->getKeywords().begin(); j != i->getKeywords().end(); ++it){
-      std::cout << *j << std::endl;
-      // if (*j == keyword){
-      //   books_moved++;
-      //   std::cout << books_moved;
-      //   dest.push_back(*it);
-      //   break;
-      // }
+    for (auto j = i->getKeywords().begin(); j != i->getKeywords().end(); ++j){
+      if (*j == keyword){
+        books_moved++;
+        Book dest_book = std::move(*i);
+        dest.push_back(dest_book);
+        break;
+      }
     }
   }
 

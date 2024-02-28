@@ -1,3 +1,10 @@
+/**
+CSCI 335 Spring 2024
+Project 1
+Modified by Allison Lee on February 28, 2024
+Book.cpp declares the Book class and implements its private and public members
+*/
+
 #include "Book.hpp"
 
     // write and document all methods in this file.
@@ -29,6 +36,7 @@
         icon_ = rhs.icon_;
         price_ = rhs.price_;
         keywords_ = rhs.keywords_;
+        blurb_ = rhs.blurb_;
     }
 
     /**
@@ -209,23 +217,27 @@
                   << "\nAuthor: " << author_ 
 
         //print ISBN
-                  << "\nISBN: " << ISBN_ 
+                  << "\nISBN: " << ISBN_ ;
 
         //print every integer in array icon, separate by space
-                  << "\nIcon: ";
-                for (int i = 0; i < 80; i++){
-                    std::cout << icon_[i] << " ";
-                }
+        std::cout << "\nIcon: ";
+        if (icon_){
+            for (int i = 0; i < 80; i++){
+                std::cout << icon_[i] << " ";
+            }
+        }
 
         //print price, must be 2 decimal places
-        std::cout << "\nPrice: $" << std::setprecision(2) << std::fixed << price_
+        std::cout << "\nPrice: $" << std::fixed << std::setprecision(2) << price_;
 
         //print every string in vector keywords, separate by comma
-                  << "\nKeywords: ";
-                for (auto it = keywords_.begin(); it != keywords_.end() - 1; ++it){
-                    std::cout << *it << ", ";
-                }
-                    std::cout << keywords_.back();
+        std::cout << "\nKeywords: ";
+        if (!keywords_.empty()){
+            for (auto it = keywords_.begin(); it != keywords_.end() - 1; ++it){
+                std::cout << *it << ", ";
+            }
+                std::cout << keywords_.back();
+        }
 
         //print blurb
         std::cout << "\nBlurb: " << blurb_ << "\n";

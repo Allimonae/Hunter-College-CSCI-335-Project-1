@@ -2,7 +2,7 @@ CXX = g++
 CXXFLAGS = -std=c++17 -g -Wall -O2
 
 PROG ?= main
-OBJS = Book.o Main.o
+OBJS = Book.o MoveAll.o Main.o
 
 all: $(PROG)
 

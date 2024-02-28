@@ -1,3 +1,10 @@
+/**
+CSCI 335 Spring 2024
+Project 1
+Modified by Allison Lee on February 28, 2024
+Main.cpp tests the Book.cpp and MoveAll.cpp methods
+*/
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -29,8 +36,6 @@ int main(){
   std::smatch match;
   Book temp;
 
-  int count = 0;
-  
   // reads all 7 fields in each iteration and copies the value of each field into Book "temp"
   // pushes "temp" onto the back of "catalog" at the end of the iteration
   while (getline(fin,line)){
@@ -108,20 +113,15 @@ int main(){
 
     getline(fin,line);  // skip line between entries
     catalog.push_back(temp);
-
-    count++;
-    std::cout << count << " ";
-    temp.print();
   }
 
   // write your test cases here
 
-  // std::vector<Book> dest;
-  // moveAll("Literary Fiction", catalog, dest);
-  // for (auto it = dest.begin(); it != dest.end(); ++it){
-  //   Book book = std::move(*it);
-  //   book.print();
-  // }
+  std::vector<Book> dest;
+  moveAll("Manga", catalog, dest);
+  for (auto it = catalog.begin(); it != catalog.end(); ++it){
+    it->print();
+  }
 
   return 0;
 }
