@@ -72,12 +72,12 @@ Book.cpp declares the Book class and implements its private and public members
     Book& Book::operator=(Book&& rhs)
     {
         if (&rhs != this){
-            title_ = rhs.title_;
-            author_ = rhs.author_;
-            ISBN_ = rhs.ISBN_;
-            price_ = rhs.price_;
+            std::swap(title_, rhs.title_);
+            std::swap(author_, rhs.author_);
+            std::swap(ISBN_, rhs.ISBN_);
+            std::swap(price_, rhs.price_);
             std::swap(keywords_, rhs.keywords_);
-            blurb_ = rhs.blurb_;
+            std::swap(blurb_, rhs.blurb_);
 
             // delete rhs.icon_
             delete[] icon_;
