@@ -13,19 +13,30 @@ MoveAll.cpp implements the MoveAll function
 // Use iterators whenever appropriate.
 // Hint: you need a const iterator for a const vector, but this will be automatically handled using "auto".
 
+/**
+ * @param: a constant string keyword
+ * @param: a vector of Books source
+ * @param: a vector of Books dest
+ * @post: if a book contains a keyword, move book from "source" into "dest"
+*/
 void moveAll (const std::string keyword, std::vector<Book> &source, std::vector<Book> &dest){
   const auto t1_start = std::chrono::steady_clock::now();
   int books_moved=0; // counts books moved
   // DO NOT ALTER ABOVE HERE
 
+  // iterate through source
   for (auto i = source.begin(); i != source.end(); ++i){
+    // iterate through source keywords
     for (auto j = i->getKeywords().begin(); j != i->getKeywords().end(); ++j){
+      // check for keyword
       if (*j == keyword){
         books_moved++;
-        Book dest_book = std::move(*i);
-        dest.push_back(dest_book);
+        
+        // move book to dest, remove from source, decrement i
+        dest.push_back(std::move(*i));
         source.erase(i);
         i--;
+
         break;
       }
     }

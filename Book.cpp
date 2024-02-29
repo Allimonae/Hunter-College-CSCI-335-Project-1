@@ -12,7 +12,7 @@ Book.cpp declares the Book class and implements its private and public members
     /**
      * Default constructor
     */
-    Book::Book():title_(""), author_(""), ISBN_(0), icon_(0), price_(0.0), blurb_("")
+    Book::Book():title_(""), author_(""), ISBN_(0), icon_(nullptr), price_(0.0), blurb_("")
     {
         keywords_.clear();
     }
@@ -33,7 +33,12 @@ Book.cpp declares the Book class and implements its private and public members
         title_ = rhs.title_;
         author_ = rhs.author_;
         ISBN_ = rhs.ISBN_;
-        icon_ = rhs.icon_;
+
+        icon_ = new int[80];
+        for (int i = 0; i < 80; i++){
+            icon_[i] = rhs.icon_[i];
+        }
+
         price_ = rhs.price_;
         keywords_ = rhs.keywords_;
         blurb_ = rhs.blurb_;
@@ -45,7 +50,9 @@ Book.cpp declares the Book class and implements its private and public members
     Book& Book::operator=(const Book& rhs)
     {
         Book copy = rhs;
+        delete[] icon_;
         std::swap(*this, copy);
+        icon_ = nullptr;
         return *this;
     }
 
@@ -55,13 +62,8 @@ Book.cpp declares the Book class and implements its private and public members
     Book::Book(Book&& rhs): title_(rhs.title_), author_(rhs.author_), ISBN_(rhs.ISBN_), 
         icon_(rhs.icon_), price_(rhs.price_), keywords_(std::move(rhs.keywords_)), blurb_(rhs.blurb_)
     {
-        rhs.title_ = "";
-        rhs.author_ = "";
-        rhs.ISBN_ = 0;
-        rhs.icon_ = 0;
-        rhs.price_ = 0.0;
-        rhs.keywords_.clear();
-        rhs.blurb_ = "";
+        delete[] rhs.icon_;
+        rhs.icon_ = nullptr;
     }
 
     /**
@@ -69,13 +71,19 @@ Book.cpp declares the Book class and implements its private and public members
     */
     Book& Book::operator=(Book&& rhs)
     {
-        std::swap(title_, rhs.title_);
-        std::swap(author_, rhs.author_);
-        std::swap(ISBN_, rhs.ISBN_);
-        std::swap(icon_, rhs.icon_);
-        std::swap(price_, rhs.price_);
-        std::swap(keywords_, rhs.keywords_);
-        std::swap(blurb_, rhs.blurb_);
+        if (&rhs != this){
+            title_ = rhs.title_;
+            author_ = rhs.author_;
+            ISBN_ = rhs.ISBN_;
+            price_ = rhs.price_;
+            std::swap(keywords_, rhs.keywords_);
+            blurb_ = rhs.blurb_;
+
+            // delete rhs.icon_
+            delete[] icon_;
+            std::swap(icon_, rhs.icon_);
+            rhs.icon_ = nullptr;
+        }
         return *this;
     }
 
@@ -148,6 +156,7 @@ Book.cpp declares the Book class and implements its private and public members
     */
     void Book::setIcon(int* icon)
     {
+        delete[] icon_;
         icon_ = icon;
     }
 
@@ -221,6 +230,7 @@ Book.cpp declares the Book class and implements its private and public members
 
         //print every integer in array icon, separate by space
         std::cout << "\nIcon: ";
+        // check if icon_ exists
         if (icon_){
             for (int i = 0; i < 80; i++){
                 std::cout << icon_[i] << " ";
@@ -232,7 +242,9 @@ Book.cpp declares the Book class and implements its private and public members
 
         //print every string in vector keywords, separate by comma
         std::cout << "\nKeywords: ";
+        //check if keywords isn't empty
         if (!keywords_.empty()){
+            // iterate through keywords_
             for (auto it = keywords_.begin(); it != keywords_.end() - 1; ++it){
                 std::cout << *it << ", ";
             }
