@@ -50,9 +50,9 @@ Book.cpp declares the Book class and implements its private and public members
     Book& Book::operator=(const Book& rhs)
     {
         Book copy = rhs;
-        //delete[] icon_;
+        delete[] icon_;
         std::swap(*this, copy);
-        //icon_ = nullptr;
+        icon_ = nullptr;
         return *this;
     }
 
@@ -65,10 +65,12 @@ Book.cpp declares the Book class and implements its private and public members
         rhs.title_ = "";
         rhs.author_ = "";
         rhs.ISBN_ = 0;
-        rhs.icon_ = 0;
+        delete[] rhs.icon_; 
+        rhs.icon_ = nullptr;
         rhs.price_ = 0.0;
         rhs.keywords_.clear();
         rhs.blurb_ = "";
+
     }
 
     /**
