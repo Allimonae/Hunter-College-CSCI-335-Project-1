@@ -62,8 +62,7 @@ Book.cpp declares the Book class and implements its private and public members
     {
         rhs.title_ = "";
         rhs.author_ = "";
-        rhs.ISBN_ = 0;
-        delete[] rhs.icon_; 
+        rhs.ISBN_ = 0; 
         rhs.icon_ = nullptr;
         rhs.price_ = 0.0;
         rhs.keywords_.clear();
