@@ -118,10 +118,10 @@ int main(){
   // write your test cases here
 
   std::vector<Book> dest;
-  moveAll("Manga", catalog, dest);
-  for (auto it = catalog.begin(); it != catalog.end(); ++it){
-    it->print();
-  }
+  moveAll("Food", catalog, dest);
+  // for (auto it = catalog.begin(); it != catalog.end(); ++it){
+  //   it->print();
+  // }
 
   return 0;
 }

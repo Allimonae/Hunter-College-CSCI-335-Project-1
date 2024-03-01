@@ -22,7 +22,8 @@ Book.cpp declares the Book class and implements its private and public members
     */
     Book::~Book()
     {
-
+        delete[] icon_;
+        icon_ = nullptr;
     }
 
     /**
@@ -49,8 +50,10 @@ Book.cpp declares the Book class and implements its private and public members
     */
     Book& Book::operator=(const Book& rhs)
     {
-        Book copy = rhs;
-        std::swap(*this, copy);
+        if (this != &rhs){
+            Book copy = rhs;
+            std::swap(*this, copy);
+        }
         return *this;
     }
 
@@ -67,7 +70,6 @@ Book.cpp declares the Book class and implements its private and public members
         rhs.price_ = 0.0;
         rhs.keywords_.clear();
         rhs.blurb_ = "";
-
     }
 
     /**
